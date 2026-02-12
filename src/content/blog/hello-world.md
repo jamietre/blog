@@ -1,7 +1,7 @@
 ---
 title: "Hello World"
 description: "I'm Back."
-pubDate: "Feb 10 2026"
+date: 2026-02-10
 ---
 
 Not that I ever left. I've just been lurking in the shadows.

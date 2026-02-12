@@ -1,58 +1,72 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
-import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/blog-placeholder-1.jpg';
-import { SITE_TITLE } from '../consts';
+import '@/styles/index.css'
+import {site} from "@/consts";
+import UmamiAnalytics from '@/components/UmamiAnalytics.astro';
+import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+import BusuanziAnalytics from '@/components/BusuanziAnalytics.astro';
+import { ClientRouter } from "astro:transitions";
+import getUrl from "@/utils/getUrl";
 
 interface Props {
-	title: string;
-	description: string;
-	image?: ImageMetadata;
+  title?: string;
+  description?: string;
+  mathjax?: boolean;
+  mermaid?: boolean;
+  ogImage?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description, image = FallbackImage } = Astro.props;
+const {description = site.description, mathjax = false, mermaid = false, ogImage:ogimage = ''} = Astro.props
+let ogImage =  ogimage || new URL(Astro.url.pathname, Astro.site?.href).href;
+let title = Astro.props.title ? `${Astro.props.title} - ${site.title}` : site.title;
 ---
+<head>
+  <!-- Global Metadata -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href={getUrl(site.favicon)}>
+  <meta name="generator" content={Astro.generator}>
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalURL}>
+  <link rel="alternate" type="application/rss+xml" title={site.title} href={getUrl('/rss.xml')}>
 
-<!-- Global Metadata -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" href="/favicon.ico" />
-<link rel="sitemap" href="/sitemap-index.xml" />
-<link
-	rel="alternate"
-	type="application/rss+xml"
-	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
-/>
-<meta name="generator" content={Astro.generator} />
+  <!-- Primary Meta Tags -->
+  <meta name="title" content={title}>
+  <meta name="description" content={description}>
 
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={Astro.url}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={ogImage}>
+  <!-- <meta property="og:image:alt" content={site.description}/> -->
 
-<!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL} />
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content={Astro.url}>
+  <meta property="twitter:title" content={title}>
+  <meta property="twitter:description" content={description}>
+  <meta property="twitter:image" content={ogImage}>
 
-<!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, Astro.url)} />
+  <link rel="sitemap" href={getUrl("/sitemap-0.xml")}>
+  <title>{title}</title>
+  <ClientRouter />
+  <script is:inline src={getUrl("/toggle-theme.js")}></script>
+  {
+    mathjax && <script async type="text/javascript" src=`${getUrl("/load-mathjax.js")}`></script>
+  }
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+  {
+    mermaid &&
+    <script async type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.9.0/mermaid.min.js"></script>
+  }
+  <GoogleAnalytics />
+  <UmamiAnalytics />
+  <BusuanziAnalytics/>
+</head>

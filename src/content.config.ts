@@ -1,20 +1,33 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const blog = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
-	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
-	// Type-check frontmatter using a schema
-	schema: ({ image }) =>
-		z.object({
-			title: z.string(),
-			description: z.string(),
-			// Transform string to Date object
-			pubDate: z.coerce.date(),
-			updatedDate: z.coerce.date().optional(),
-			heroImage: image().optional(),
-			listImage: image().optional(),
-		}),
+  loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional().nullable(),
+    date: z.date(),
+    tags: z.array(z.string()).or(z.string()).optional().nullable(),
+    category: z.array(z.string()).or(z.string()).default('uncategorized').nullable(),
+    sticky: z.number().default(0).nullable(),
+    mathjax: z.boolean().default(false).nullable(),
+    mermaid: z.boolean().default(false).nullable(),
+    draft: z.boolean().default(false).nullable(),
+    toc: z.boolean().default(true).nullable(),
+    donate: z.boolean().default(true).nullable(),
+    comment: z.boolean().default(true).nullable(),
+    ogImage: z.string().optional()
+  }),
 });
 
-export const collections = { blog };
+const feed = defineCollection({
+  loader: glob({ base: './src/content/feed', pattern: '**/*.{md,mdx}' }),
+  schema: z.object({
+    date: z.date().or(z.string()).optional().nullable(),
+    donate: z.boolean().default(true),
+    comment: z.boolean().default(true),
+  })
+})
+
+export const collections = { blog, feed };
