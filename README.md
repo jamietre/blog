@@ -1,29 +1,16 @@
-# blog
+# Jamie's Notes
 
-Testing new github pages
+A personal blog built with [Astro](https://astro.build), deployed to GitHub Pages.
 
-Here's some code
+## Development
 
-```Javascript
-// money = [{ category, amount }, ... ]
-// group all sale transactions by category, and return the
-// # and total $ of sales per category
-
-let money = iter(allSales)
-    .groupBy('category')
-    .map(([category, sales])=> {
-        return {
-            volume: sales.length,
-            totalDollars: iter(sales).map(e=>e.amount).sum()    
-        }
-    })
+```bash
+pnpm install
+pnpm dev
 ```
 
-And now:
+## Build
 
-* Some
-* Bullets
-
-### subheading
-
-The end!
+```bash
+pnpm build
+```
