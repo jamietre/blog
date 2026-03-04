@@ -1,0 +1,14 @@
+[tools]
+node = "lts"
+
+[tasks.dev]
+description = "Start the Astro dev server"
+run = "pnpm dev"
+
+[tasks.build]
+description = "Build the site for production"
+run = "pnpm build"
+
+[tasks.preview]
+description = "Preview the production build"
+run = "pnpm preview"

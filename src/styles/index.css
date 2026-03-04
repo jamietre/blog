@@ -244,10 +244,10 @@ menu {
 
 .avatar {
   border-radius: 50%;
-  padding: 4px;
-  width: 96px;
-  height: 96px;
-  object-fit: cover;
+  padding: 16px;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
   background-color: transparent;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

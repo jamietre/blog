@@ -48,9 +48,9 @@ function init() {
 }
 
 
-window.onload = () => {
-  init()
-};
+document.addEventListener("astro:page-load", () => {
+  init();
+});
 
 // sync with system changes
 window.matchMedia("(prefers-color-scheme: dark)")

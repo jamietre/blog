@@ -21,7 +21,18 @@ let tagCount = getCountByTagName(blogs);
     <div class="block xl:hidden">
       <MenuIcon></MenuIcon>
     </div>
-    <a class="p-4 text-2xl" href={getUrl("/")}>{site.title}</a>
+    <a class="p-4" href={getUrl("/")}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" class="h-10 w-auto" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-label={site.title}>
+        <!-- main wave swell with crest -->
+        <path d="M2 38 C12 38 18 12 30 6 C36 3 41 6 42 14 C44 24 50 34 64 34 C76 34 84 30 98 24" />
+        <!-- small curl at the crest -->
+        <path d="M30 6 C34 4 40 6 38 12" stroke-width="2.5" />
+        <!-- foam dots -->
+        <circle cx="68" cy="33" r="1.2" fill="currentColor" stroke="none" />
+        <circle cx="76" cy="31" r="1" fill="currentColor" stroke="none" />
+        <circle cx="84" cy="29" r="1.2" fill="currentColor" stroke="none" />
+      </svg>
+    </a>
     <div class="flex items-center">
       <div class="hidden xl:block">
         <div class="flex items-center pr-4 space-x-5">

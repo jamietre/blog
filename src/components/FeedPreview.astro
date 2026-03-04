@@ -8,10 +8,10 @@ import getUrl from "@/utils/getUrl";
 
 <div class="mt-2 mb-4">
   <p
-    class="break-all first-letter tracking-wide first-letter:font-semibold first-letter:text-2xl line-clamp-2"
+    class="break-words first-letter tracking-wide first-letter:font-semibold first-letter:text-2xl line-clamp-2"
   >
     {
-      body.replace(/^#+/gm, "").replace(/!?\[.*?\]\(.*?\)/g, "")
+      body.replace(/^#+/gm, "").replace(/!\[.*?\]\(.*?\)/g, "").replace(/\[(.*?)\]\(.*?\)/g, "$1")
     }
   </p>
   <p class="flex items-center justify-between text-sm">

@@ -25,8 +25,8 @@ const feed = defineCollection({
   loader: glob({ base: './src/content/feed', pattern: '**/*.{md,mdx}' }),
   schema: z.object({
     date: z.date().or(z.string()).optional().nullable(),
-    donate: z.boolean().default(true),
-    comment: z.boolean().default(true),
+    donate: z.boolean().default(false),
+    comment: z.boolean().default(false),
   })
 })
 

@@ -97,23 +97,10 @@ export const categories = [
     href: "/search",
   },
   {
-    name: "More",
-    iconClass: "ri-more-fill",
-    href: "javascript:void(0);",
-    children: [
-      {
-        name: 'About',
-        iconClass: 'ri-information-line',
-        href: '/about',
-      },
-      {
-        name: 'Friends',
-        iconClass: 'ri-user-5-line',
-        href: '/friends',
-        target: '_self',
-      },
-    ]
-  }
+    name: 'About',
+    iconClass: 'ri-information-line',
+    href: '/about',
+  },
 ]
 
 /**
@@ -121,24 +108,14 @@ export const categories = [
  */
 export const infoLinks = [
   {
-    icon: 'ri-telegram-fill',
-    name: 'telegram',
-    outlink: '',
-  },
-  {
-    icon: 'ri-twitter-fill',
-    name: 'twitter',
-    outlink: '',
-  },
-  {
-    icon: 'ri-instagram-fill',
-    name: 'instagram',
-    outlink: '',
-  },
-  {
     icon: 'ri-github-fill',
     name: 'github',
-    outlink: 'https://github.com/cirry/astro-yi',
+    outlink: 'https://github.com/jamietre',
+  },
+  {
+    icon: 'ri-linkedin-fill',
+    name: 'linkedin',
+    outlink: 'https://www.linkedin.com/in/jamietre/',
   },
   {
     icon: 'ri-rss-fill',
@@ -195,7 +172,7 @@ export const friendshipLinks =
  * walineConfig.whiteList {string[]} set some pages not to display reaction
  */
 export const comment = {
-  enable: false,
+  enable: true,
   type: 'giscus', // waline | giscus,
   walineConfig: {
     serverUrl: "",
@@ -211,18 +188,18 @@ export const comment = {
 
   // giscus config
   giscusConfig: {
-    'data-repo': "",
-    'data-repo-id': "",
-    'data-category': "",
-    'data-category-id': "",
-    'data-mapping': "",
-    'data-strict': "",
-    'data-reactions-enabled': "",
-    'data-emit-metadata': "",
-    'data-input-position': "",
-    'data-theme': "",
-    'data-lang': "",
-    'crossorigin': "",
+    'data-repo': "jamietre/blog",
+    'data-repo-id': "MDEwOlJlcG9zaXRvcnk3Nzk1NTE3NQ==",
+    'data-category': "General",
+    'data-category-id': "DIC_kwDOBKWAZ84C3rOV",
+    'data-mapping': "pathname",
+    'data-strict': "0",
+    'data-reactions-enabled': "1",
+    'data-emit-metadata': "0",
+    'data-input-position': "bottom",
+    'data-theme': "preferred_color_scheme",
+    'data-lang': "en",
+    'crossorigin': "anonymous",
   }
 
   //

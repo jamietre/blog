@@ -1,6 +1,57 @@
 ---
 import { comment } from "@/consts";
+const { giscusConfig } = comment;
 ---
 
 <div class="giscus"></div>
-<script src="https://giscus.app/client.js" {...comment.giscusConfig}></script>
+
+<script is:inline define:vars={{ giscusConfig }}>
+  function getGiscusTheme() {
+    return document.firstElementChild.getAttribute('data-theme') === 'dark'
+      ? 'dark_dimmed'
+      : 'light';
+  }
+
+  function sendGiscusTheme(theme) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    iframe.contentWindow.postMessage(
+      { giscus: { setConfig: { theme } } },
+      'https://giscus.app'
+    );
+  }
+
+  function loadGiscus() {
+    // Remove any existing giscus iframe so it re-initialises cleanly
+    const existing = document.querySelector('iframe.giscus-frame');
+    if (existing) existing.remove();
+
+    const script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.async = true;
+    script.crossOrigin = 'anonymous';
+    Object.entries(giscusConfig).forEach(([key, val]) => {
+      if (key !== 'crossorigin') script.setAttribute(key, val);
+    });
+    script.setAttribute('data-theme', getGiscusTheme());
+    document.querySelector('.giscus')?.appendChild(script);
+
+    // Set theme once the iframe signals it's ready
+    window.addEventListener('message', function onGiscusReady(e) {
+      if (e.origin !== 'https://giscus.app') return;
+      if (!e.data?.giscus) return;
+      sendGiscusTheme(getGiscusTheme());
+      window.removeEventListener('message', onGiscusReady);
+    });
+  }
+
+  // Re-run on every page navigation (covers initial load too)
+  document.addEventListener('astro:page-load', loadGiscus);
+
+  // Sync theme toggle with giscus
+  new MutationObserver(() => sendGiscusTheme(getGiscusTheme()))
+    .observe(document.firstElementChild, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+</script>
