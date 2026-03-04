@@ -15,8 +15,8 @@ Notes, thoughts, discoveries, adventures, and whatever else is interesting to me
 
 ## What's With The Shark
 
-I used to have a blog hosted at the domain outsharked.com. I'll probably move this there when I get a minute. It speaks to me.
+I had another blog hosted at the outsharked.com long time ago, and I made this logo back then. The shark speaks to me.
 
-## This Site
+## Nuts and Bolts
 
-Build with [Astro](https://astro.build) using [Yi](https://astro.build/themes/details/astro-yi/) theme
+Built with [Astro](https://astro.build) using [Yi](https://astro.build/themes/details/astro-yi/) theme
