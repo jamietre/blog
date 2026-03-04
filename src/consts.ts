@@ -28,8 +28,8 @@ export const site = {
   description: 'A personal blog about software, technology, and other things.',
   author: "Jamie", // required
   avatar: '/avatar.png', // required
-  url: 'https://jamiet.github.io', // required
-  baseUrl: '/blog', // When using GitHubPages, you must enter the repository name startWith '/'. e.g. '/astro-blog'
+  url: 'https://www.outsharked.com', // required
+  baseUrl: '', // empty when deployed to apex domain
   motto: '',
   recentBlogSize: 5,
   archivePageSize: 25,
