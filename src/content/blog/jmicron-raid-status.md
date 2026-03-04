@@ -37,7 +37,7 @@ Basic features are:
 - Cannot directly detect a degraded state, but by providing it with an expected number of drives, will report an unhealthy state if SMART status falls below thresholds or a drive is missing
 - Can output in human readable or JSON format
 - Includes a tool to aggregate data from other sources (right now, `smartctl`) and provide overall system health and complete drive status in a consistent format
-- Mitigates the scariness by refusing to do anything destructive unless it appears safe - see the [sector usage])https://github.com/jamietre/jm-raid-status/blob/main/docs/SECTOR_USAGE.md) discussion in the repo for how this communicates with the controller and why it could be sketchy
+- Mitigates the scariness by refusing to do anything destructive unless it appears safe - see the [sector usage](https://github.com/jamietre/jm-raid-status/blob/main/docs/SECTOR_USAGE.md) discussion in the repo for how this communicates with the controller and why it could be sketchy
 
 I'm hoping to reverse engineer more data; it seems like it should be possible to obtian the actual RAID status (e.g. healthy or degraded) in a way other than counting drives. The hardware itself obviously knows when it's in a degraded state and has lights that show when a drive is missing/degraded/rebuilding, so it seems reasonable that the SATA to USB controlled might expose it. However this process involves intentionally braking my array; I did this once to get the data I have so far but may need to test other configurations to better understand the data.
 
