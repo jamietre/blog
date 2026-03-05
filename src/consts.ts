@@ -24,7 +24,7 @@ import type {AnalyticsConfig} from "./types/analyticsTypes"
  */
 export const site = {
   title: "Jamie's Notes", // required
-  favicon: '/favicon.svg', // required
+  favicon: '/favicon.ico', // required
   description: 'A personal blog about software, technology, and other things.',
   author: "Jamie", // required
   avatar: '/scribbles.png', // required
