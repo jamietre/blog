@@ -15,7 +15,7 @@ Notes, thoughts, discoveries, adventures, and whatever else is interesting to me
 
 ## What's With The Shark
 
-I had another blog hosted at the outsharked.com long time ago, and I made this logo back then. The shark speaks to me.
+I had another blog hosted at outsharked.com a long time ago. I made this logo back then. The shark speaks to me.
 
 ## Nuts and Bolts
 

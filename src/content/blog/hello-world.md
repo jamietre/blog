@@ -1,7 +1,8 @@
 ---
-title: "Hello World"
+title: 'Hello World'
 description: "I'm Back."
 date: 2026-02-10
+category: 'general'
 ---
 
 Not that I ever left. I've just been lurking in the shadows.

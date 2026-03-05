@@ -27,7 +27,7 @@ export const site = {
   favicon: '/favicon.svg', // required
   description: 'A personal blog about software, technology, and other things.',
   author: "Jamie", // required
-  avatar: '/avatar.png', // required
+  avatar: '/scribbles.png', // required
   url: 'https://www.outsharked.com', // required
   baseUrl: '', // empty when deployed to apex domain
   motto: '',
@@ -97,9 +97,22 @@ export const categories = [
     href: "/search",
   },
   {
-    name: 'About',
-    iconClass: 'ri-information-line',
-    href: '/about',
+    name: "More",
+    iconClass: "ri-more-fill",
+    href: "javascript:void(0);",
+    children: [
+      {
+        name: 'About',
+        iconClass: 'ri-information-line',
+        href: '/about',
+      },
+      {
+        name: 'Resources',
+        iconClass: 'ri-user-5-line',
+        href: '/friends',
+        target: '_self',
+      },
+    ]
   },
 ]
 
