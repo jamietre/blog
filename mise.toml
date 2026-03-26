@@ -1,5 +1,6 @@
 [tools]
-node = "lts"
+node = "24"
+pnpm = "10"
 
 [tasks.dev]
 description = "Start the Astro dev server"

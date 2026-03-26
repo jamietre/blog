@@ -1,5 +1,5 @@
 ---
-title: 'JM Raid Status - Mediasonic HFR2-SU3S2 Raid SMART status utility'
+title: 'JMicron Raid Status - Mediasonic HFR2-SU3S2 Raid SMART status utility'
 description: 'A project to retrieve individual drive SMART data from RAID devices with JMicron JMS567 USB to SATA interface'
 date: 2026-03-04
 category: 'my code'
@@ -11,7 +11,7 @@ ogImage: '/external-raid.png'
 
 ## About This Project
 
-[JM Raid Status on GitHub](https://github.com/Majamietre/jm-raid-status)
+[Jmicron Raid Status on GitHub](https://github.com/Majamietre/jm-raid-status)
 
 This is something I wanted for a long time. I have a couple of these [Mediasonic HFR2-SU3S2 Proraid boxes](https://www.amazon.com/Mediasonic-HFR2-SU3S2-PRORAID-Drive-Enclosure/dp/B003YFHEAC). These are 4-bay hardware RAID
 boxes that are pretty cheap and reliable. They work well, but it's traditionally been difficult or impossible to get status of the array and the individual
@@ -45,7 +45,7 @@ I'm hoping to reverse engineer more data; it seems like it should be possible to
 
 Other things related to this chipset that I found:
 
-- [JM Raid Status on Github](https://github.com/Majamietre/jm-raid-status) - this project
+- [JMicron Raid Status on Github](https://github.com/Majamietre/jm-raid-status) - this project
 - [JMRaidCon](https://github.com/wjoe/jmraidcon) - original implementation of JMS576 protocol
 - [Linux Firmware flasher when the offiical one doesn't work](https://github.com/projectgus/jms567ctl)
 - [Discussion - firmware supporting SMART for JMS567](https://forum.odroid.com/viewtopic.php?t=41926) - this appears to be relevant for single drive enclosures. I did flash this to one of my boxes, and it didn't work, but it was possible to reflash it to the original FW

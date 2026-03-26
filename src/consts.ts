@@ -23,7 +23,7 @@ import type {AnalyticsConfig} from "./types/analyticsTypes"
  *    All tags will be displayed in single page "/tags".
  */
 export const site = {
-  title: "Jamie's Notes", // required
+  title: "Outsharked", // required
   favicon: '/favicon.ico', // required
   description: 'A personal blog about software, technology, and other things.',
   author: "Jamie", // required

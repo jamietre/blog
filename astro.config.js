@@ -21,7 +21,9 @@ export default defineConfig({
   site: site.url,
   base: import.meta.env.PROD ? site.baseUrl : '',
   trailingSlash: "never",
-  integrations: [sitemap(), tailwind(), expressiveCode({
+  integrations: [sitemap({
+    filter: (page) => !/\/(search|archive\/\d+|blog\/\d+|feed\/\d+)(\/)?$/.test(page),
+  }), tailwind(), expressiveCode({
     plugins: [pluginLineNumbers(), pluginCollapsibleSections()],
     themes: ["github-dark", "github-light"],
     styleOverrides: {
