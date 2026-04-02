@@ -1,11 +1,13 @@
 ---
 import PostView from '@/components/PostView.astro'
+import FeedPreview from '@/components/FeedPreview.astro'
 import IndexPage from '@/layouts/IndexPage.astro'
 import {getCollectionByName} from "@/utils/getCollectionByName";
 import {orderBySticky} from "@/utils/orderBySticky";
 import {site} from '@/consts'
 import Pagination from "@/components/Pagination.astro";
 import {ceil, divide} from 'lodash-es'
+import getUrl from "@/utils/getUrl";
 
 let currentPage = 1
 let blogs = await getCollectionByName("blog");
@@ -15,6 +17,10 @@ let sortedPosts = orderBySticky(blogs);
 if (sortedPosts.length > site.postPageSize) {
   sortedPosts = sortedPosts.splice(0, site.postPageSize);
 }
+
+let feedItems = await getCollectionByName("feed");
+feedItems.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const recentFeed = feedItems.slice(0, 2);
 ---
 
 <IndexPage>
@@ -29,5 +35,10 @@ if (sortedPosts.length > site.postPageSize) {
         totalPage={totalPage}
       /> : ''
   }
+  <div class="mt-8">
+    <h2 class="text-lg font-semibold mb-2 px-3 py-2" style="background-color: #6b7280; color: white;">Recent Notes Feed</h2>
+    {recentFeed.map((post, i) => <FeedPreview post={post} index={i}/>)}
+    <a href={getUrl("/feed/1")} class="text-sm hover:text-skin-active">All notes →</a>
+  </div>
 </IndexPage>
 
