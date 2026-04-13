@@ -6,7 +6,7 @@ import getUrl from "@/utils/getUrl";
 const {title, date, slug, category, tags, sticky = false, draft = false} = Astro.props
 ---
 
-<div class="text-skin-base">
+<div class="text-skin-base border-l-[3px] border-skin-active pl-3">
   <!-- title -->
   <div class="flex items-center">
     {sticky > 0 &&
@@ -32,7 +32,7 @@ const {title, date, slug, category, tags, sticky = false, draft = false} = Astro
     <!-- category -->
     {
       category && dealLabel(category).filter(item => item !== 'uncategorized').map((categoryName) =>
-        <a href={getUrl("/category/") + categoryName} class="text-wrap break-all hover:text-skin-active mr-2">
+        <a href={getUrl("/category/") + categoryName} class="text-wrap break-all text-skin-active hover:underline mr-2">
           <i class="ri-folder-3-line"/>
           {categoryName}
         </a>
@@ -42,7 +42,7 @@ const {title, date, slug, category, tags, sticky = false, draft = false} = Astro
     <!-- tag -->
     {
       tags && dealLabel(tags).map((tagName) =>
-        <a href={getUrl("/tags/") + tagName} class="text-wrap break-all hover:text-skin-active mr-2">
+        <a href={getUrl("/tags/") + tagName} class="text-wrap break-all text-skin-tag hover:underline mr-2">
           <i class="ri-hashtag"/>{tagName}</a>
       )
     }
