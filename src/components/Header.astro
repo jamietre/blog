@@ -16,7 +16,7 @@ let categoryCount = getCountByCategory(blogs);
 let tagCount = getCountByTagName(blogs);
 ---
 
-<header class="z-10 w-full bg-skin-fill text-skin-base">
+<header class="z-10 w-full text-skin-base" style="background-color: #1e1e1e;">
   <div class="container flex items-center justify-between">
     <div class="block xl:hidden">
       <MenuIcon></MenuIcon>
@@ -26,7 +26,7 @@ let tagCount = getCountByTagName(blogs);
     </a>
     <div class="flex items-center">
       <div class="hidden xl:block">
-        <div class="flex items-center pr-4 space-x-5">
+        <div class="flex items-center pr-4 space-x-5" style="color: #ccc;">
           {
             categories.map(category => (
               <HeaderLink href={category.href} icon={category.iconClass} target={category.target ? category.target : '_self'} children={category.children ? category.children : []}>{category.name}</HeaderLink>
