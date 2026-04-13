@@ -36,7 +36,7 @@ const recentFeed = feedItems.slice(0, 2);
       /> : ''
   }
   <div class="mt-8">
-    <h2 class="text-lg font-semibold mb-2 px-3 py-2" style="background-color: #6b7280; color: white;">Recent Notes Feed</h2>
+    <div class="section-label">Recent Notes</div>
     {recentFeed.map((post, i) => <FeedPreview post={post} index={i}/>)}
     <a href={getUrl("/feed/1")} class="text-sm hover:text-skin-active">All notes →</a>
   </div>
