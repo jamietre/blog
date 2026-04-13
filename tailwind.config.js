@@ -37,6 +37,7 @@ export default {
         base: withOpacity('--color-text'),
         dodge: withOpacity('--color-text-dodge'),
         active: withOpacity('--color-text-active'),
+        tag: withOpacity('--color-tag'),
       },
     },
 

@@ -43,6 +43,7 @@ menu {
     --color-text-active: 181, 118, 20;
     --color-border: 104, 157, 106;
     --color-border-active: 14, 192, 124;
+    --color-tag: 106, 154, 106;
     --color-modal: 52, 58, 64;
   }
 
@@ -55,6 +56,7 @@ menu {
     --color-text-active: 250, 189, 47;
     --color-border: 214, 93, 14;
     --color-border-active: 7, 102, 120;
+    --color-tag: 142, 192, 124;
     --color-modal: 251, 251, 251;
   }
 
@@ -87,8 +89,9 @@ menu {
 
   /*侧边栏每个栏目共有样式*/
   .aside-widget {
-    @apply flex items-center w-full mb-2;
-    border-bottom:  1px solid rgba(var(--color-text), .3);
+    @apply flex items-center w-full mb-2 text-xs font-bold tracking-widest uppercase;
+    color: rgba(var(--color-text-dodge), 1);
+    border-bottom: 1px solid rgba(var(--color-text), .2);
   }
 
   /* 侧边最近评论列表样式 */
@@ -119,6 +122,13 @@ menu {
 
   .image-cols-4 {
     @apply grid gap-4 grid-cols-4 my-2
+  }
+
+  .section-label {
+    @apply text-xs font-bold tracking-widest uppercase pb-1.5;
+    color: rgba(var(--color-text-dodge), 1);
+    border-bottom: 1px solid rgba(var(--color-text), .15);
+    margin-bottom: 0.75rem;
   }
 }
 
