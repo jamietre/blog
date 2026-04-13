@@ -60,6 +60,7 @@ export default {
         normal: withOpacity('--color-text'),
         base: withOpacity('--color-border'),
         dodge: withOpacity('--color-text-dodge'),
+        active: withOpacity('--color-text-active'),
       },
     },
     extend: {
