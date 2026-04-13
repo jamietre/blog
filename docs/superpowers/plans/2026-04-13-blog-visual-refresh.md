@@ -75,7 +75,7 @@ Find the existing `.aside-widget` rule in `src/styles/index.css`:
 
 - [ ] **Step 4: Add `text-skin-tag` to Tailwind config**
 
-In `tailwind.config.js`, add a `tag` entry to the `textColor.skin` object:
+In `tailwind.config.js`, add `tag` to `textColor.skin` and `active` to `borderColor.skin`:
 
 ```js
 textColor: {
@@ -84,6 +84,16 @@ textColor: {
     dodge: withOpacity('--color-text-dodge'),
     active: withOpacity('--color-text-active'),
     tag: withOpacity('--color-tag'),   // ← add this line
+  },
+},
+
+// Also update borderColor.skin:
+borderColor: {
+  skin: {
+    normal: withOpacity('--color-text'),
+    base: withOpacity('--color-border'),
+    dodge: withOpacity('--color-text-dodge'),
+    active: withOpacity('--color-text-active'),   // ← add this line (needed for border-skin-active in PostViewTitle)
   },
 },
 ```
