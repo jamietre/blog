@@ -1,0 +1,52 @@
+---
+import IndexPage from "@/layouts/IndexPage.astro";
+import { getCollectionByName } from "@/utils/getCollectionByName";
+import { sortPostsByDate } from "@/utils/sortPostsByDate";
+import getUrl from "@/utils/getUrl";
+import dayjs from "dayjs";
+
+const blogs = sortPostsByDate(await getCollectionByName("blog"));
+const feeds = sortPostsByDate(await getCollectionByName("feed"));
+
+const pages = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Blog", href: "/blog/1" },
+  { name: "Archive", href: "/archive/1" },
+  { name: "Tags", href: "/tags" },
+  { name: "Notes (Feed)", href: "/feed/1" },
+  { name: "Message", href: "/message" },
+  { name: "Resources", href: "/friends" },
+];
+---
+
+<IndexPage title="Sitemap">
+  <div class="section-label">Pages</div>
+  <ul class="mb-8 space-y-1">
+    {pages.map((p) => (
+      <li>
+        <a class="hover:text-skin-active" href={getUrl(p.href)}>{p.name}</a>
+      </li>
+    ))}
+  </ul>
+
+  <div class="section-label">Posts</div>
+  <ul class="mb-8 space-y-1">
+    {blogs.map((post) => (
+      <li class="flex gap-4">
+        <span class="text-skin-base opacity-60 shrink-0">{dayjs(post.data.date).format("YYYY-MM-DD")}</span>
+        <a class="hover:text-skin-active" href={getUrl(`/blog/${post.id}`)}>{post.data.title}</a>
+      </li>
+    ))}
+  </ul>
+
+  <div class="section-label">Notes</div>
+  <ul class="space-y-1">
+    {feeds.map((post) => (
+      <li class="flex gap-4">
+        <span class="text-skin-base opacity-60 shrink-0">{dayjs(post.data.date).format("YYYY-MM-DD")}</span>
+        <a class="hover:text-skin-active" href={getUrl(`/feed/${post.id}`)}>{post.data.title}</a>
+      </li>
+    ))}
+  </ul>
+</IndexPage>

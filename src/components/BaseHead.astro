@@ -54,7 +54,7 @@ let title = Astro.props.title ? `${Astro.props.title} - ${site.title}` : site.ti
   <meta name="msapplication-config" content="/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="sitemap" href={getUrl("/sitemap-0.xml")}>
+  <link rel="sitemap" href={getUrl("/sitemap-index.xml")}>
   <title>{title}</title>
   <ClientRouter />
   <script is:inline src={getUrl("/toggle-theme.js")}></script>
