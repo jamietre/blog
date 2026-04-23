@@ -21,6 +21,7 @@ export default defineConfig({
   site: site.url,
   base: import.meta.env.PROD ? site.baseUrl : '',
   trailingSlash: "never",
+  devToolbar: { placement: "bottom-center" },
   integrations: [sitemap({
     filter: (page) => !/\/(search|archive\/\d+|blog\/\d+|feed\/\d+)(\/)?$/.test(page),
   }), tailwind(), expressiveCode({

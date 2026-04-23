@@ -2,7 +2,7 @@
 title: 'JMicron Raid Status - Mediasonic HFR2-SU3S2 Raid SMART status utility'
 description: 'A project to retrieve individual drive SMART data from RAID devices with JMicron JMS567 USB to SATA interface'
 date: 2026-03-04
-category: 'my code'
+category: 'code'
 toc: true
 ogImage: '/external-raid.png'
 ---

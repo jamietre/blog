@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # patches
 patches/
+
+# Claude
+.superpowers/

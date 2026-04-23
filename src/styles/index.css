@@ -17,6 +17,16 @@
 html {
   min-height: 100%;
   scroll-padding-top: 16px;
+  overflow-y: scroll;
+}
+
+::view-transition-old(root) {
+  animation-duration: 60ms;
+}
+
+::view-transition-new(root) {
+  animation-duration: 100ms;
+  animation-delay: 0ms;
 }
 
 body {
