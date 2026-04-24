@@ -9,11 +9,12 @@ import getUrl from "@/utils/getUrl";
 <div class="mt-2 mb-4">
   <p
     class="break-words first-letter tracking-wide first-letter:font-semibold first-letter:text-2xl line-clamp-2"
-  >
-    {
-      body.replace(/^#+/gm, "").replace(/!\[.*?\]\(.*?\)/g, "").replace(/\[(.*?)\]\(.*?\)/g, "$1")
+    set:html={body
+      .replace(/^#+\s*/gm, "")
+      .replace(/!\[.*?\]\(.*?\)/g, "")
+      .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="underline font-normal">$1</a>')
     }
-  </p>
+  />
   <p class="flex items-center justify-between text-sm">
     <FeedPostDate date={data.date} index={index}/>
     <a class="hover:text-skin-active text-sm border rounded py-1 px-2" href={getUrl("/feed/") + id}>{t('home.readMore')}</a>
