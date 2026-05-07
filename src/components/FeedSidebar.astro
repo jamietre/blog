@@ -1,8 +1,8 @@
 ---
 import {getCollectionByName} from "@/utils/getCollectionByName";
 import {formatDate} from "@/utils/formatDate";
-import {site} from "@/consts";
 import getUrl from "@/utils/getUrl";
+import dayjs from 'dayjs';
 
 const feedItems = await getCollectionByName('feed');
 feedItems.sort((a, b) => {
@@ -10,7 +10,11 @@ feedItems.sort((a, b) => {
   const bDate = b.data.date ? new Date(b.data.date).valueOf() : 0;
   return bDate - aDate;
 });
-const recentFeed = feedItems.slice(0, site.recentBlogSize);
+
+const thirtyDaysAgo = dayjs().subtract(30, 'day');
+const recentFeed = feedItems.filter(item =>
+  item.data.date && dayjs(item.data.date).isAfter(thirtyDaysAgo)
+);
 ---
 
 <div>
@@ -19,15 +23,18 @@ const recentFeed = feedItems.slice(0, site.recentBlogSize);
   </div>
   <div class="flex flex-col">
     {
-      recentFeed.map((post) => (
-        <a
-          href={getUrl("/feed/") + post.id}
-          class="truncate mt-1 hover:text-skin-active"
-          title={post.data.date ? formatDate(post.data.date) : post.id}
-        >
-          {post.data.date ? formatDate(post.data.date) : post.id}
-        </a>
-      ))
+      recentFeed.map((post) => {
+        const label = post.data.headline ?? (post.data.date ? formatDate(post.data.date) : post.id);
+        return (
+          <a
+            href={getUrl("/feed/") + post.id}
+            class="truncate mt-1 hover:text-skin-active"
+            title={label}
+          >
+            {label}
+          </a>
+        );
+      })
     }
   </div>
   <a href={getUrl("/feed/1")} class="text-xs mt-2 hover:text-skin-active block">All notes →</a>
