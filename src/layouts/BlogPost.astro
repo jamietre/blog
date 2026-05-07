@@ -8,7 +8,6 @@ import Comment from '@/components/Comment.astro';
 import Toc from '@/components/Toc.astro';
 import { comment, config } from '@/consts';
 import ScrollToTop from '@/components/ScrollToTop.astro';
-import { t } from '@/i18n/utils';
 
 interface Props {
   frontmatter: {
@@ -54,14 +53,6 @@ const {
     >
       <div class="grid grid-cols-4 gap-8">
         <div class="col-span-4 space-y-4 xl:col-span-3 first:space-y-2">
-          <button
-            class="flex items-center outline-none cursor-pointer text-md text-skin-active hover:underline"
-            style="background-color: inherit;"
-            onclick="history.back()"
-          >
-            <i class="mr-2 ri-arrow-left-line"></i>
-            <span>{t('home.goBack')}</span>
-          </button>
           <slot />
           {frontmatter.comment && comment.enable && <Comment />}
         </div>
