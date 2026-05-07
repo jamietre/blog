@@ -17,6 +17,6 @@ import getUrl from "@/utils/getUrl";
   />
   <p class="flex items-center justify-between text-sm">
     <FeedPostDate date={data.date} index={index}/>
-    <a class="hover:text-skin-active text-sm border rounded py-1 px-2" href={getUrl("/feed/") + id}>{t('home.readMore')}</a>
+    <a class="hover:text-skin-active text-xs border rounded py-0.5 px-1.5" href={getUrl("/feed/") + id}>{t('home.readMore')}</a>
   </p>
 </div>

@@ -6,7 +6,7 @@ export  const en = {
   'blog.tableOfContent':'Table of Contents',
   'feed.next': 'Next',
   'feed.previous': 'Previous',
-  'feed.publishedIn':'Published in',
+  'feed.publishedIn':'Published',
   'footer.articleAuthor':'Article author',
   'footer.articleTitle':'Article title',
   'footer.busuanziSitePV':'Page views:',
