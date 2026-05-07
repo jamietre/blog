@@ -1,44 +1,52 @@
 ---
-import PostView from '@/components/PostView.astro'
-import FeedPreview from '@/components/FeedPreview.astro'
-import IndexPage from '@/layouts/IndexPage.astro'
+import HomePage from '@/layouts/HomePage.astro'
+import PostTitle from "@/components/PostTitle.astro";
+import BlogFooter from '@/components/BlogFooter.astro'
 import {getCollectionByName} from "@/utils/getCollectionByName";
-import {orderBySticky} from "@/utils/orderBySticky";
-import {site} from '@/consts'
-import Pagination from "@/components/Pagination.astro";
-import {ceil, divide} from 'lodash-es'
+import {render} from "astro:content";
+import {sortPostsByDate} from "@/utils/sortPostsByDate";
 import getUrl from "@/utils/getUrl";
 
-let currentPage = 1
-let blogs = await getCollectionByName("blog");
-let totalPage = ceil(divide(blogs.length, site.postPageSize))
+const blogs = await getCollectionByName("blog");
+const sortedPosts = sortPostsByDate(blogs);
 
-let sortedPosts = orderBySticky(blogs);
-if (sortedPosts.length > site.postPageSize) {
-  sortedPosts = sortedPosts.splice(0, site.postPageSize);
-}
+const entry = sortedPosts[0];
+const {Content, headings, remarkPluginFrontmatter} = await render(entry);
 
-let feedItems = await getCollectionByName("feed");
-feedItems.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const recentFeed = feedItems.slice(0, 2);
+const lastModified = remarkPluginFrontmatter?.lastModified;
+const readingTime = remarkPluginFrontmatter?.readingTime;
+
+const prevPost = sortedPosts[1] ?? null;
 ---
 
-<IndexPage>
-  {
-    sortedPosts.map(blog =>
-      <PostView blog={blog}></PostView>)
-  }
-  {
-    totalPage > 1 ?
-      <Pagination
-        currentPage={currentPage}
-        totalPage={totalPage}
-      /> : ''
-  }
-  <div class="mt-8">
-    <div class="section-label">Recent Notes</div>
-    {recentFeed.map((post, i) => <FeedPreview post={post} index={i}/>)}
-    <a href={getUrl("/feed/1")} class="text-sm hover:text-skin-active">All notes →</a>
+<HomePage frontmatter={entry.data} headings={headings}>
+  <div>
+    <PostTitle {...entry.data} lastModified={lastModified} readingTime={readingTime}></PostTitle>
+    <div class="divider-horizontal"></div>
+    <article class="markdown-body">
+      <Content/>
+    </article>
+    <div class="divider-horizontal"></div>
+    <div class="h-8 text-skin-base">
+      {
+        prevPost ? (
+          <a
+            class="truncate w-auto max-w-[40%] float-left"
+            href={getUrl('/') + prevPost.collection + '/' + prevPost.id}
+            title={prevPost.data.title}
+          >
+            <i class="ri-arrow-left-s-fill"/>
+            {prevPost.data.title}
+          </a>
+        ) : (
+          <div/>
+        )
+      }
+    </div>
+    <BlogFooter
+      title={entry.data.title}
+      url={getUrl('/') + entry.collection + '/' + entry.id}
+      date={entry.data.date}
+    ></BlogFooter>
   </div>
-</IndexPage>
-
+</HomePage>
