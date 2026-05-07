@@ -1,0 +1,103 @@
+---
+import type { MarkdownHeading } from 'astro';
+import BaseHead from '@/components/BaseHead.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Profile from '@/components/Profile.astro';
+import Comment from '@/components/Comment.astro';
+import Toc from '@/components/Toc.astro';
+import PostIndex from '@/components/PostIndex.astro';
+import FeedSidebar from '@/components/FeedSidebar.astro';
+import ScrollToTop from '@/components/ScrollToTop.astro';
+import { comment, config } from '@/consts';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description?: string;
+    comment?: boolean;
+    toc?: boolean;
+    mathjax?: boolean;
+    mermaid?: boolean;
+    ogImage?: string;
+  };
+  headings: MarkdownHeading[];
+}
+
+const {
+  frontmatter = {
+    title: '',
+    comment: false,
+    toc: false,
+    mathjax: false,
+    mermaid: false,
+  },
+  headings,
+} = Astro.props;
+---
+
+<html lang={config.lang}>
+  <BaseHead
+    title={frontmatter.title}
+    description={frontmatter.description}
+    mathjax={frontmatter.mathjax}
+    mermaid={frontmatter.mermaid}
+    ogImage={frontmatter.ogImage}
+  />
+
+  <body class="bg-skin-secondary flex flex-col min-h-screen">
+    <Header />
+    <main class="container relative p-4 pb-32 text-skin-base flex-1" id="app">
+      <div class="grid grid-cols-4 gap-8">
+        <div class="col-span-4 space-y-4 xl:col-span-3 first:space-y-2">
+          <slot />
+          {frontmatter.comment && comment.enable && <Comment />}
+        </div>
+        <div class="relative hidden col-span-1 xl:block space-y-6">
+          <Profile />
+          {frontmatter.toc && <Toc headings={headings} />}
+          <PostIndex />
+          <FeedSidebar />
+        </div>
+        <ScrollToTop />
+      </div>
+      <Footer />
+    </main>
+  </body>
+</html>
+
+<script>
+  import { Fancybox } from '@fancyapps/ui';
+  import '@fancyapps/ui/dist/fancybox/fancybox.css';
+
+  Fancybox.bind('[data-fancybox]');
+
+  const markdownBody = document.querySelector('.markdown-body');
+  if (markdownBody) {
+    let images = markdownBody.querySelectorAll('img');
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const image = entry.target as HTMLImageElement;
+          const data_src = image.getAttribute('data-src');
+          const data_alt = image.getAttribute('data-alt');
+          image.setAttribute('data-fancybox', 'gallery');
+          if (data_src) image.setAttribute('src', data_src);
+          if (data_alt) image.setAttribute('alt', data_alt);
+          observer.unobserve(image);
+        }
+      });
+    };
+    const observer = new IntersectionObserver(callback);
+    images.forEach((image) => observer.observe(image));
+
+    const links = markdownBody.querySelectorAll('a');
+    for (let i = 0; i < links.length; i++) {
+      const names = links[i].getAttributeNames();
+      if (!names.includes('data-footnote-backref') && !names.includes('data-footnote-ref')) {
+        links[i].setAttribute('target', '_blank');
+        links[i].setAttribute('rel', 'nofollow noreferrer');
+      }
+    }
+  }
+</script>
