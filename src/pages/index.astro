@@ -21,12 +21,6 @@ const prevPost = sortedPosts[1] ?? null;
 
 <HomePage frontmatter={entry.data} headings={headings}>
   <div>
-    <PostTitle {...entry.data} lastModified={lastModified} readingTime={readingTime}></PostTitle>
-    <div class="divider-horizontal"></div>
-    <article class="markdown-body">
-      <Content/>
-    </article>
-    <div class="divider-horizontal"></div>
     <div class="h-8 text-skin-base">
       {
         prevPost ? (
@@ -43,6 +37,12 @@ const prevPost = sortedPosts[1] ?? null;
         )
       }
     </div>
+    <PostTitle {...entry.data} lastModified={lastModified} readingTime={readingTime}></PostTitle>
+    <div class="divider-horizontal"></div>
+    <article class="markdown-body">
+      <Content/>
+    </article>
+    <div class="divider-horizontal"></div>
     <BlogFooter
       title={entry.data.title}
       url={getUrl('/') + entry.collection + '/' + entry.id}
