@@ -15,7 +15,7 @@ const filtersHeadings = headings
 const filtersHeadingsLength = filtersHeadings.length;
 ---
 
-<div
+{filtersHeadingsLength > 0 && <div
   id="toc"
   class="sticky px-2 py-2 my-4 rounded-lg shadow-lg bg-skin-card top-4"
 >
@@ -123,4 +123,4 @@ const filtersHeadingsLength = filtersHeadings.length;
       observer.observe(link);
     });
   </script>
-</div>
+</div>}
