@@ -1,0 +1,28 @@
+---
+import {getCollectionByName} from "@/utils/getCollectionByName";
+import {sortPostsByDate} from "@/utils/sortPostsByDate";
+import getUrl from "@/utils/getUrl";
+
+const blogs = await getCollectionByName('blog');
+const sortedPosts = sortPostsByDate(blogs);
+---
+
+<div>
+  <div class="aside-widget">
+    <i class="ri-file-list-line menu-icon"></i> Posts
+  </div>
+  <div class="flex flex-col">
+    {
+      sortedPosts.map((post) => (
+        <a
+          href={getUrl("/blog/") + post.id}
+          class="truncate mt-1 hover:text-skin-active"
+          title={post.data.title}
+        >
+          {post.data.title}
+        </a>
+      ))
+    }
+  </div>
+  <a href={getUrl("/blog/1")} class="text-xs mt-2 hover:text-skin-active block">All posts →</a>
+</div>
