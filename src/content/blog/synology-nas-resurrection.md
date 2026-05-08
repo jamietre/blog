@@ -1,5 +1,5 @@
 ---
-title: 'The NAS That Came Back From the Dead'
+title: 'Synology Resurrection'
 description: 'How I recovered a Synology DS218j after nuking the OS without a full reinstall'
 date: 2026-05-08
 category: 'general'
@@ -28,6 +28,13 @@ the timeline, in their words.
 ---
 
 ## Timeline
+
+It started with a message that strikes fear into any sysadmin's heart: "I accidentally deleted some critical files from
+my NAS."
+
+The patient was a Synology DS218j — a little two-bay NAS quietly humming away, holding years of data. The symptoms were
+grim: the DSM web interface was dead, SMB file sharing had collapsed, and most services weren' working. A full factory
+reinstall would mean wiping everything and starting from scratch. We decided to try something harder.
 
 | Time      | Event                                                                                                                           |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------- |
